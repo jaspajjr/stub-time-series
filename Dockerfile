@@ -1,10 +1,10 @@
 FROM jaspajjr/data-science-dockerfile
 
-RUN chmod +x /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so
-RUN mkdir /output
+COPY requirements.txt /data/requirements.txt
+RUN pip install -r /data/requirements.txt
 
-COPY ./HRA /data/HRA
-COPY ./start.py /data/start.py
+COPY ./src /data
+
 COPY container-entrypoint.sh /entry
 RUN chmod 0755 /entry
 
