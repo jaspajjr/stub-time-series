@@ -1,4 +1,4 @@
 {
-    "interval": "s",
+    "interval": "1",
     "host": "http://httpbin.org/post"
 }

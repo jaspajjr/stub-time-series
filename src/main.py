@@ -1,6 +1,7 @@
+import time
+import json
 from load_data import time_series
 import outgoing
-import json
 
 
 def load_config() -> dict:
@@ -12,8 +13,10 @@ def load_config() -> dict:
 def main():
     df = time_series()
     config = load_config()
-    outgoing.send_request({"foo": 100}, config)
-    return df
+
+    for row in df.iterrows():
+        outgoing.send_request(row[1]['Open'], config)
+        time.sleep(int(config['interval']))
 
 
 if __name__ == '__main__':
